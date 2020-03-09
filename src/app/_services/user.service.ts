@@ -1,0 +1,49 @@
+﻿import { Injectable } from '@angular/core';
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
+
+import { AppConfig } from '../app.config';
+import { User } from '../_models/index';
+import { HttpClient } from '@angular/common/http';
+
+@Injectable()
+export class UserService {
+    constructor(private http: Http, private config: AppConfig, private httpClient: HttpClient) { }
+
+    getAll() {
+        debugger;
+        return this.httpClient.get(this.config.apiUrl + '/users');
+    }
+
+    getById(id: string) {
+        return this.http.get(this.config.apiUrl + '/users/' + id, this.jwt()).map((response: Response) => response.json());
+    }
+
+    create(user: User) {
+        return this.http.post(this.config.apiUrl + '/register', user);
+    }
+
+    update(user: User) {
+        debugger;
+        const updateUser = {
+            email: user.email,
+            firstName: user.firstName,
+            lastName: user.lastName
+        }
+        return this.http.patch(this.config.apiUrl + '/users/' + user._id, updateUser, this.jwt());
+    }
+
+    delete(id: number) {
+        return this.http.delete(this.config.apiUrl + '/users/' + id, this.jwt());
+    }
+
+    // private helper methods
+
+    private jwt() {
+        // create authorization header with jwt token
+        let user = JSON.parse(localStorage.getItem('currentUser'));
+        if (user && user.token) {
+            let headers = new Headers({ 'Authorization': 'Bearer ' + user.token });
+            return new RequestOptions({ headers: headers });
+        }
+    }
+}

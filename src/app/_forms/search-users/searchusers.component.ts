@@ -7,7 +7,7 @@ import { PagerService } from '../../_services/pager.service';
 
 @Component({
   selector: 'app-SearchUsers',
-  templateUrl: './SearchUsers.component.html'
+  templateUrl: 'searchUsers.component.html'
 })
 export class SearchUsersComponent {
 

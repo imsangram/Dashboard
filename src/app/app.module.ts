@@ -9,20 +9,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './_guards/index';
 import {
   HomeComponent, LoginComponent, RegisterComponent, DashboardComponent,
-  SearchUsersComponent, AddUserComponent, UpdateProfileComponent
+  AddUserComponent, UpdateProfileComponent
 } from './_forms/index';
 import { ModalComponent } from './_shared/index';
 
 import { AppComponent } from './app.component';
-import { AuthenticationService, AlertService, UserService, SearchuserService, PagerService, AuthService } from './_services/index';
+import { AuthenticationService, AlertService, UserService, SearchuserService, PagerService, AuthService, LoaderService } from './_services/index';
 import { HeaderComponent, FooterComponent, SidebarComponent } from './_layout/index';
 import { AlertComponent } from './_directives/index';
 import { AppConfig } from './app.config';
-import { UserProfileComponent } from './_forms/userprofile/userprofile.component';
 import { AvatarpipePipe } from './_pipes/avatarpipe.pipe';
-import { TokenInterceptor } from './_interceptors/token.interceptor';
-import { UnAutherizedInterceptor } from './_interceptors/unautherized.interceptor';
-
+import { TokenInterceptor, UnAutherizedInterceptor, LoaderInterceptor } from './_interceptors/index';
+import { LoadingBarModule } from '@ngx-loading-bar/core';
 
 
 
@@ -36,18 +34,22 @@ import { UnAutherizedInterceptor } from './_interceptors/unautherized.intercepto
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    SearchUsersComponent,
     AlertComponent,
-    UserProfileComponent,
     AddUserComponent,
     UpdateProfileComponent,
     ModalComponent,
     AvatarpipePipe
   ],
   imports: [
-    BrowserModule, FormsModule, AppRoutingModule, HttpModule, HttpClientModule, ReactiveFormsModule
+    BrowserModule,
+    FormsModule,
+    AppRoutingModule,
+    HttpModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    LoadingBarModule
   ],
-  providers: [AuthGuard, AppConfig, AuthenticationService, AlertService, UserService, SearchuserService, PagerService, AuthService,
+  providers: [AuthGuard, AppConfig, AuthenticationService, AlertService, UserService, SearchuserService, PagerService, AuthService, LoaderService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
@@ -56,6 +58,12 @@ import { UnAutherizedInterceptor } from './_interceptors/unautherized.intercepto
     {
       provide: HTTP_INTERCEPTORS,
       useClass: UnAutherizedInterceptor,
+      multi: true
+    }
+    ,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
       multi: true
     }
   ],

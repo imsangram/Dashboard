@@ -10,6 +10,7 @@ import { User } from '../../_models';
 })
 export class UpdateProfileComponent implements OnInit {
   user: User;
+  isEdited: boolean = false;
   constructor(
     private alertService: AlertService,
     private userService: UserService) {
@@ -24,10 +25,9 @@ export class UpdateProfileComponent implements OnInit {
     const userObj = JSON.parse(localStorage.getItem('currentUser'));
     const obj = JSON.parse(atob(userObj.token.split('.')[1]));
     const id = obj._id;
-    //this.user._id = id;
 
     this.userService.getById(id)
-      .subscribe(user => {
+      .subscribe((user: User) => {
         this.user = user;
         this.user.password = '';
       },
@@ -35,6 +35,11 @@ export class UpdateProfileComponent implements OnInit {
 
         });
   }
+
+  editForm() {
+    this.isEdited = true;
+  }
+
   submitForm(myForm: NgForm) {
     if (myForm.value.firstName == '' || myForm.value.lastName == '' || myForm.value.dateOfBirth == '' || myForm.value.email == '') {
       this.alertService.error('All fields are mandatory');
@@ -47,5 +52,6 @@ export class UpdateProfileComponent implements OnInit {
         (error) => {
           this.alertService.error('Data could not be saved');
         });
+    this.isEdited = false;
   }
 }

@@ -27,16 +27,9 @@ export class HomeComponent implements OnInit {
     }
 
     private loadAllUsers() {
-        debugger
         this.userService.getAll()
             .subscribe((users: User[]) => {
-                debugger;
-                console.log(users);
                 this.users = users;
             });
-    }
-
-    testClick() {
-        this.alertService.error('Test message');
     }
 }

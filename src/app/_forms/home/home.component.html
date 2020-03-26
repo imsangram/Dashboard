@@ -22,11 +22,11 @@
                             <td>{{ i+1 }}</td>
                             <td><img height="30px" width="30px"
                                     src='../../../assets/img/faces/{{ user.firstname | avatarpipe}}' />
-                                {{ user.firstName | uppercase }}</td>
+                                {{ user.firstName }}</td>
                             <td>{{ user.lastName }}</td>
                             <td>{{ user.email | lowercase}}</td>
                             <td>{{ user.dateOfBirth | date:"dd-MM-yyyy"}}</td>
-                            <td>{{ 96780 * (i+1) | currency:"USD":"code":'1.3-3'}}</td>
+                            <td>{{ 96780 * (i+1) | currency }}</td>
                         </tr>
                     </tbody>
                 </table>

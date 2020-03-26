@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { Subject } from 'rxjs';
-import { Observable } from 'rxjs/Observable';
 import { Router, ActivatedRoute } from '@angular/router';
-import { SearchuserService } from '../../_services/searchuser.service';
-import { PagerService } from '../../_services/pager.service';
+import { SearchuserService, PagerService } from '../../../_services/index';
+import { RequestOptions, Headers } from '@angular/http';
 
 @Component({
-  selector: 'app-SearchUsers',
-  templateUrl: 'searchUsers.component.html'
+  selector: 'app-searchusers',
+  templateUrl: 'searchusers.component.html'
 })
 export class SearchUsersComponent {
 
@@ -72,6 +71,15 @@ export class SearchUsersComponent {
   }
 
   openUserProfile(user) {
-    this.router.navigateByUrl('/user/' + user);
+    this.router.navigateByUrl('/users/' + user);
+  }
+
+  private headerRequest() {
+    // create authorization header with jwt token
+    let user = JSON.parse(localStorage.getItem('currentUser'));
+    if (user && user.token) {
+      let headers = new Headers({ 'Authorization': 'Bearer ' + user.token });
+      return new RequestOptions({ headers: headers });
+    }
   }
 }

@@ -15,9 +15,8 @@ export class UnAutherizedInterceptor implements HttpInterceptor {
     constructor(private auth: AuthService, private router: Router) { }
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(req).do((event: HttpEvent<any>) => {
-            debugger;
             if (event instanceof HttpResponse) {
-                // do stuff with response if you want
+                // do stuff with response if you wantx`
             }
         }, (err: any) => {
             if (err instanceof HttpErrorResponse) {

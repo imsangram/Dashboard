@@ -20,6 +20,5 @@ export class AddUserComponent implements OnInit {
       return false;
     }
     this.alertService.success('data submitted');
-    console.log(myForm.value);
   }
 }

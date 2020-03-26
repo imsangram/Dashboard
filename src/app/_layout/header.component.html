@@ -7,8 +7,11 @@
                 <span class="icon-bar bar2"></span>
                 <span class="icon-bar bar3"></span>
             </button>
-            <a class="navbar-brand" href="#">Dashboard</a>
+            <a class="navbar-brand" href="#">{{ title }}</a>
         </div>
+        <!-- <div *ngIf="isLoading$ | async">
+            <div class="loader"></div>
+        </div> -->
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li>
@@ -39,7 +42,9 @@
                     </a>
                 </li>
                 <li>
-                    <a [routerLink]="['/login']"><p>Logout</p></a>
+                    <a [routerLink]="['/login']">
+                        <p>Logout</p>
+                    </a>
                 </li>
             </ul>
 

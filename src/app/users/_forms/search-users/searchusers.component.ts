@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Subject } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SearchuserService, PagerService } from '../../../_services/index';
 import { RequestOptions, Headers } from '@angular/http';

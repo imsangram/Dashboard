@@ -1,20 +1,24 @@
 <ngx-loading-bar [color]="'red'" [height]="'4px'"></ngx-loading-bar>
-<div class="wrapper">
-    <div *ngIf="isLoggedIn$ | async">
-        <my-sidebar></my-sidebar>
-    </div>
-    <div [ngClass]="(isLoggedIn$ | async)? 'main-panel' : ''">
-        <div *ngIf="isLoggedIn$ | async">
-            <my-header></my-header>
+<ng-container *ngIf="isLoggedIn$ | async; then loggedIn; else loggedOut">
+</ng-container>
+<!-- Logged In user with shared layout -->
+<ng-template #loggedIn>
+    <div class="wrapper">
+        <div class="sidebar" data-color="white" data-active-color="danger">
+            <sidebar-cmp></sidebar-cmp>
         </div>
-        <div class="content">
-            <div class="container-fluid">
+        <div class="main-panel">
+            <navbar-cmp></navbar-cmp>
+            <div class="content">
                 <my-alert></my-alert>
                 <router-outlet></router-outlet>
             </div>
-        </div>
-        <div *ngIf="isLoggedIn$ | async">
-            <my-footer></my-footer>
+            <footer-cmp></footer-cmp>
         </div>
     </div>
-</div>
+</ng-template>
+<!-- Logged out view -->
+<ng-template #loggedOut>
+    <my-alert></my-alert>
+    <router-outlet></router-outlet>
+</ng-template>

@@ -6,5 +6,5 @@
 })
 
 export class DashboardComponent {
-    title: string = 'DashboardComponent';
+
 }

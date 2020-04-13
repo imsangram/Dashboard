@@ -9,24 +9,58 @@
 </div>
 <br />
 <!-- pager -->
-<ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-    <li [ngClass]="{disabled:pager.currentPage === 1}">
-        <a (click)="setPage(1)">First</a>
-    </li>
-    <li [ngClass]="{disabled:pager.currentPage === 1}">
-        <a (click)="setPage(pager.currentPage - 1)">Previous</a>
-    </li>
-    <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-        <a (click)="setPage(page)">{{page}}</a>
-    </li>
-    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-        <a (click)="setPage(pager.currentPage + 1)">Next</a>
-    </li>
-    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-        <a (click)="setPage(pager.totalPages)">Last</a>
-    </li>
-</ul>
-<div class="row">
+<nav aria-label="page navigation" *ngIf="users?.length > 0 && pager.pages && pager.pages.length">
+    <ul class="pagination">
+        <li [ngClass]="(pager.currentPage === 1)?'page-item disabled':'page-item '">
+            <a (click)="setPage(1)" class="page-link">First</a>
+        </li>
+        <li [ngClass]="(pager.currentPage === 1)?'page-item disabled':'page-item '">
+            <a (click)="setPage(pager.currentPage - 1)" class="page-link">Previous</a>
+        </li>
+        <li *ngFor="let page of pager.pages" [ngClass]="(pager.currentPage === page)?'page-item active':'page-item'">
+            <a (click)="setPage(page)" class="page-link">{{page}}</a>
+        </li>
+        <li [ngClass]="(pager.currentPage === pager.totalPages)?'page-item disabled':'page-item'">
+            <a (click)="setPage(pager.currentPage + 1)" class="page-link">Next</a>
+        </li>
+        <li [ngClass]="(pager.currentPage === pager.totalPages)?'page-item disabled':'page-item'">
+            <a (click)="setPage(pager.totalPages)" class="page-link">Last</a>
+        </li>
+    </ul>
+</nav>
+<div class="col-lg-10 col-md-8">
+    <div class="card" *ngIf="users?.length > 0; else dataNotFound">
+        <div class="card-header">
+            <h4 class="card-title">Team Members</h4>
+        </div>
+        <div class="card-body">
+            <ul class="list-unstyled team-members">
+                <li *ngFor="let user of users" (click)="openUserProfile(user.login)" style="cursor: pointer;">
+                    <div class="row">
+                        <div class="col-md-2 col-2">
+                            <div class="avatar">
+                                <img [src]="user.avatar_url+ '&amp;s=48'" [alt]="user.login"
+                                    class="img-circle img-no-padding img-responsive">
+                            </div>
+                        </div>
+                        <div class="col-md-7 col-7">
+                            {{user.login}}
+                            <br>
+                            <span class="text-muted">
+                                <small>Offline</small>
+                            </span>
+                        </div>
+                        <div class="col-md-3 col-3 text-right">
+                            <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i
+                                    class="fa fa-github"></i></button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- <div class="row">
     <div class="col-lg-10 col-md-8">
         <div class="card" *ngIf="users?.length > 0; else dataNotFound">
             <div class="header">
@@ -57,10 +91,11 @@
                 </ul>
             </div>
         </div>
-        <ng-template #dataNotFound>
-            data not found
-        </ng-template>
+        
     </div>
-</div>
+</div> -->
 
 <div *ngFor="let item of pagedItems">{{item.name}}</div>
+<ng-template #dataNotFound>
+    data not found
+</ng-template>

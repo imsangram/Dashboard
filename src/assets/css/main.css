@@ -1,31 +1,6 @@
 
 
 
-
-/*//////////////////////////////////////////////////////////////////
-[ FONT ]*/
-/*
-@font-face {
-  font-family: Muli;
-  src: url('../fonts/poppins/Muli.ttf'); 
-}
-
-@font-face {
-  font-family: Muli;
-  src: url('../fonts/poppins/Muli.ttf'); 
-}
-
-@font-face {
-  font-family: Muli;
-  src: url('../fonts/poppins/Muli.ttf'); 
-}
-
-@font-face {
-  font-family: Montserrat-Bold;
-  src: url('../fonts/montserrat/Montserrat-Bold.ttf'); 
-}
-*/
-
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
 
@@ -37,12 +12,12 @@
 
 body, html {
 	height: 100%;
-	font-family: Muli, sans-serif;
+	font-family: Montserrat, sans-serif;
 }
 
 /*---------------------------------------------*/
 a {
-	font-family: Muli;
+	font-family: Montserrat;
 	font-size: 14px;
 	line-height: 1.7;
 	color: #666666;
@@ -68,7 +43,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 p {
-	font-family: Muli;
+	font-family: Montserrat;
 	font-size: 14px;
 	line-height: 1.7;
 	color: #666666;
@@ -135,14 +110,14 @@ iframe {
 /*//////////////////////////////////////////////////////////////////
 [ Utility ]*/
 .txt1 {
-  font-family: Muli;
+  font-family: Montserrat;
   font-size: 13px;
   line-height: 1.5;
   color: #999999;
 }
 
 .txt2 {
-  font-family: Muli;
+  font-family: Montserrat;
   font-size: 13px;
   line-height: 1.5;
   color: #666666;
@@ -157,6 +132,9 @@ iframe {
   margin: 0 auto;
 }
 
+.p-t-20{
+	padding-top:20px;
+}
 .container-login100 {
   width: 100%;  
   min-height: 100vh;
@@ -210,7 +188,7 @@ iframe {
 }
 
 .login100-form-title {
-  font-family: Muli;
+  font-family: Montserrat;
   font-size: 24px;
   color: #333333;
   line-height: 1.2;
@@ -231,7 +209,7 @@ iframe {
 }
 
 .input100 {
-  font-family: Muli;
+  font-family: Montserrat;
   font-size: 15px;
   line-height: 1.5;
   color: #666666;
@@ -324,7 +302,7 @@ iframe {
 }
 
 .login100-form-btn {
-  font-family: Muli;
+  font-family: Montserrat;
   font-size: 15px;
   line-height: 1.5;
   color: #fff;
@@ -419,7 +397,7 @@ iframe {
   right: 8px;
   pointer-events: none;
 
-  font-family: Muli;
+  font-family: Montserrat;
   color: #c80000;
   font-size: 13px;
   line-height: 1.4;

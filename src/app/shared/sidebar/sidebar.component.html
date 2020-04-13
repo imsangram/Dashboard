@@ -1,0 +1,44 @@
+﻿<div class="sidebar-wrapper">
+    <div class="logo">
+        <a href="/" class="simple-text logo-mini">
+            <div class="logo-image-small">
+                <img src="assets/img/angular2-logo.png">
+            </div>
+        </a>
+        <a href="/" class="simple-text logo-normal">
+            Dashboard App
+        </a>
+    </div>
+    <ul class="nav">
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+            <a routerLink="/home">
+                <i class="fa fa-home"></i>
+                <p>Home</p>
+            </a>
+        </li>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+            <a routerLink="/dashboard">
+                <i class="fa fa-cogs"></i>
+                <p>Dashboard</p>
+            </a>
+        </li>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+            <a routerLink="/users/searchusers">
+                <i class="fa fa-address-card"></i>
+                <p>Search users</p>
+            </a>
+        </li>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+            <a routerLink="/updateprofile">
+                <i class="fa fa-user"></i>
+                <p>Update Profile</p>
+            </a>
+        </li>
+        <!-- <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+            <a routerLink="/users">
+                <i class="fa fa-user"></i>
+                <p>Users</p>
+            </a>
+        </li> -->
+    </ul>
+</div>

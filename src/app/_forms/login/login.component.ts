@@ -1,10 +1,11 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../../_services/index';
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
-    templateUrl: 'login.component.html'
+    templateUrl: 'login.component.html',
+    styleUrls: ['../../../assets/css/main.css']
 })
 
 export class LoginComponent implements OnInit {
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private authenticationService: AuthenticationService) { }
+        private authenticationService: AuthenticationService,
+        private toastrService: ToastrService) { }
 
     ngOnInit() {
         // reset login status
@@ -35,7 +37,7 @@ export class LoginComponent implements OnInit {
                     this.router.navigateByUrl('/home');
                 },
                 error => {
-                    this.error = "Incorrect username or password";
+                    this.toastrService.error('Incorrect username or password');
                     this.loading = false;
                 });
     }
